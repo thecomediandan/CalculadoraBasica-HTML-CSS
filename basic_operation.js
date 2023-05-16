@@ -234,7 +234,7 @@ function _eliminaPorcentaje(operacion) {
 
   return _unirNumero(bloque_1, num) + bloque_2 + '';
 }
-//console.log(_eliminaPorcentaje('123%-67+78%'));
+console.log(_eliminaPorcentaje('89%'));
 function _indiceBloqueCompleto(operacion) {
 
   let op = operacion + '';
@@ -302,6 +302,9 @@ export function _operacion_parentesis(operacion) {
     let operacion_basica = new OperacionBasica(sub_op);
     res = operacion_basica.resolverOperacion();
     op = _unirNumero(op.substring(0, op_i), res) + op.substring(op_f, op.length);
+  }
+  while(op.includes('%')) {
+    op = _eliminaPorcentaje(op);
   }
   let operacion_basica_final = new OperacionBasica(op)
   return operacion_basica_final.resolverOperacion();
