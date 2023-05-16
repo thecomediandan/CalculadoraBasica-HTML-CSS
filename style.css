@@ -8,20 +8,12 @@
 body{
     font-family: monospace;
     background-color: var(--color-gray-hard);
-    font-size: xx-large;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    width: 100%;
-    height: 100vh;
-    position: relative;
     overflow: hidden;
-    flex-direction: column;
 }
 .cuerpo-calculadora{
     margin: auto;
     width: 330px;
-    height: 620px;
+    /* height: 620px; */
     background-color: var(--color-primary);
     border-radius: 20px;
     display: flex;
@@ -37,6 +29,7 @@ body{
     height: 25%;
 }
 .solucion-calculadora{
+    height: 2rem;
     text-align: end;
     font-size: xx-large;
     padding-right: 15px;
@@ -132,7 +125,7 @@ body{
 
 .botones-calculadora{
     justify-content: space-evenly;
-    margin-top: 15px;
+    margin-top: 1.5rem;
 }
 .botones-calculadora button{
     width: 50px;
@@ -148,7 +141,6 @@ body{
 }
 .botones-calculadora .btn-num:hover{
     background-color: var(--color-gray-hard);
-    font-size: 20px;
     color: var(--color-gray);
 }
 .botones-calculadora .btn-C{
@@ -157,7 +149,6 @@ body{
 }
 .botones-calculadora .btn-C:hover{
     background-color: var(--color-gray-hard);
-    font-size: 20px;
     color: var(--color-red);
 }
 .botones-calculadora .btn-ope{
@@ -166,7 +157,6 @@ body{
 }
 .botones-calculadora .btn-ope:hover{
     background-color: var(--color-gray-hard);
-    font-size: 20px;
     color: var(--color-green);
 }
 .botones-calculadora .btn-igual{
@@ -175,8 +165,10 @@ body{
 }
 .botones-calculadora .btn-igual:hover{
     background-color: var(--color-gray-hard);
-    font-size: 20px;
     color: var(--color-primary);
+}
+.botones-calculadora-final {
+    margin-bottom: 1.7rem;
 }
 
 hr{
@@ -184,4 +176,43 @@ hr{
     width: 85%;
     height: 2px;
     background-color: var(--color-gray-hard);
+}
+
+@media screen and (max-width: 768px) {
+    .cuerpo-calculadora {
+        width: 100%;
+        height: 100vh;
+    }
+    .botones-calculadora button{
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        font-size: 23px;
+        transition: all 0.3s;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    .menu-calculadora button{
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+    .menu-calculadora div button{
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+    .btn-menu {
+        font-size: 1.5rem;
+    }
+    .btn-borrar {
+        font-size: 1.5rem;
+    }
+    .operacion-calculadora {
+        font-size: 2.2rem;
+        user-select: none;
+    }
+    .solucion-calculadora {
+        font-size: 2.2rem;
+    }
 }

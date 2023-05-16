@@ -216,3 +216,95 @@ class OperacionBasica {
 // if (!a.isNaN) {
 //     console.log('Es un número');
 // }
+
+function _eliminaPorcentaje(operacion) {
+
+  let op = operacion + '';
+  let _regla1 = new RegExp(/[0-9\.]+%/, 'g');
+
+  // console.log(_regla1.exec(op)['index']);
+  // console.log(_regla1.lastIndex);
+  let index_i = _regla1.exec(op)['index'];
+  let index_f = _regla1.lastIndex;
+
+  let bloque_1 = op.substring(0, index_i);
+  let bloque_2 = op.substring(index_f, op.length);
+
+  let num = parseFloat(op.substring(index_i, index_f - 1)) / 100;
+
+  return _unirNumero(bloque_1, num) + bloque_2 + '';
+}
+//console.log(_eliminaPorcentaje('123%-67+78%'));
+function _indiceBloqueCompleto(operacion) {
+
+  let op = operacion + '';
+  let _regla1 = new RegExp(/\([0-9\-\+\*\/\.%]+\)/, 'g');
+
+   //console.log(_regla1.exec(op['index']));
+   //console.log(_regla1.lastIndex);
+
+  return [_regla1.exec(op)['index'],_regla1.lastIndex];
+}
+//console.log(_indiceBloqueCompleto('(89+(4-5)'));
+
+function _indiceBloqueInicial(operacion) {
+
+  let op = operacion + '';
+  let _regla1 = new RegExp(/\([0-9\-\+\*\/\.%]+/, 'g');
+
+  // console.log(_regla1.exec(op));
+  // console.log(_regla1.lastIndex);
+
+  return [_regla1.exec(op)['index'],_regla1.lastIndex];
+}
+//console.log(_indiceBloqueInicial('asdf(2*12/765+345-78%'));
+
+function _unirNumero(bloque, num) {
+  let op = bloque + '';
+  if (num >= 0) {
+    return bloque + num;
+  }else {
+    if (op.endsWith('+')) {
+      return op.substring(0, op.length - 1) + num;
+    }
+    if (op.endsWith('-')) {
+      if (op.length == 1) {
+        return op.substring(0, op.length - 1) + `${(-1)*num}`;
+      }
+      if (op.substring(op.length - 2, op.length - 1) == '(') {
+        return op.substring(0, op.length - 1) + `${(-1)*num}`;
+      }
+      return op.substring(0, op.length - 1) + `+${(-1)*num}`;
+    }
+  }
+  return bloque + num;
+}
+//console.log(_unirNumero('', -23))
+
+export function _operacion_parentesis(operacion) {
+  let op = operacion + '';
+  while(op.includes('(')) {
+    let op_i, op_f;
+    let sub_op;
+    let res;
+    if (op.includes('(') && op.includes(')')) {
+      let indices = _indiceBloqueCompleto(op);
+      op_i = indices[0]; op_f = indices[1];
+      sub_op = op.substring(op_i + 1, op_f - 1);
+    }else {
+      let indices = _indiceBloqueInicial(op);
+      op_i = indices[0]; op_f = indices[1];
+      sub_op = op.substring(op_i + 1, op_f);
+    }
+    while(sub_op.includes('%')) {
+      sub_op = _eliminaPorcentaje(sub_op);
+    }
+    let operacion_basica = new OperacionBasica(sub_op);
+    res = operacion_basica.resolverOperacion();
+    op = _unirNumero(op.substring(0, op_i), res) + op.substring(op_f, op.length);
+  }
+  let operacion_basica_final = new OperacionBasica(op)
+  return operacion_basica_final.resolverOperacion();
+}
+
+// console.log(_operacion_parentesis('(((((20-1000/(150-50))-10'));
