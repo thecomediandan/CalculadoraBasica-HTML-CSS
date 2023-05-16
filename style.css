@@ -29,11 +29,16 @@ body{
     height: 25%;
 }
 .solucion-calculadora{
-    height: 2rem;
+    height: 3rem;
     text-align: end;
     font-size: xx-large;
     padding-right: 15px;
     font-weight: bold;
+    box-sizing: border-box;
+    text-overflow: clip;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-top: 0.5rem;
 }
 .operacion-calculadora{
     width: 100%;
@@ -216,6 +221,8 @@ hr{
         user-select: none;
     }
     .solucion-calculadora {
+        padding-top: 0.5rem;
+        height: 3rem;
         font-size: 2.2rem;
     }
     .menu-calculadora>button:hover{
@@ -223,17 +230,22 @@ hr{
     }
     .menu-calculadora>div button:hover{
         background-color: var(--color-gray);
+        color: #000;
     }
     .botones-calculadora .btn-num:hover{
         background-color: var(--color-gray);
+        color: var(--color-gray-hard);
     }
     .botones-calculadora .btn-C:hover{
         background-color: var(--color-gray);
+        color: var(--color-red);
     }
     .botones-calculadora .btn-ope:hover{
         background-color: var(--color-gray);
+        color: var(--color-green);
     }
     .botones-calculadora .btn-igual:hover{
         background-color: var(--color-gray);
+        color: var(--color-primary);
     }
 }
