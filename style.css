@@ -179,9 +179,12 @@ hr{
 }
 
 @media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
     .cuerpo-calculadora {
         width: 100%;
-        height: 100vh;
+        height: auto;
     }
     .botones-calculadora button{
         width: 4.5rem;
@@ -214,5 +217,23 @@ hr{
     }
     .solucion-calculadora {
         font-size: 2.2rem;
+    }
+    .menu-calculadora>button:hover{
+        background-color: var(--color-gray);
+    }
+    .menu-calculadora>div button:hover{
+        background-color: var(--color-gray);
+    }
+    .botones-calculadora .btn-num:hover{
+        background-color: var(--color-gray);
+    }
+    .botones-calculadora .btn-C:hover{
+        background-color: var(--color-gray);
+    }
+    .botones-calculadora .btn-ope:hover{
+        background-color: var(--color-gray);
+    }
+    .botones-calculadora .btn-igual:hover{
+        background-color: var(--color-gray);
     }
 }
